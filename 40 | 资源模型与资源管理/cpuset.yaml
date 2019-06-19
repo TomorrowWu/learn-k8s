@@ -1,0 +1,15 @@
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      resources:
+        limits:
+          memory: "200Mi"
+          cpu: "2"
+        requests:
+          memory: "200Mi"
+          cpu: "2"
+
+# 首先，你的 Pod 必须是 Guaranteed 的 QoS 类型；
+# 然后，你只需要将 Pod 的 CPU 资源的 requests 和 limits 设置为同一个相等的整数值即可
+# 该 Pod 就会被绑定在 2 个独占的 CPU 核上

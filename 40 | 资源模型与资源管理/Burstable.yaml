@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-demo-2
+  namespace: qos-example
+spec:
+  containers:
+    - name: qos-demo-2-ctr
+      image: nginx
+      resources:
+        limits
+        memory: "200Mi"
+        requests:
+          memory: "100Mi"
+
+# 当 Pod 不满足 Guaranteed 的条件，但至少有一个 Container 设置了 requests。那么这个 Pod 就会被划分到 Burstable 类别 (暴增)
