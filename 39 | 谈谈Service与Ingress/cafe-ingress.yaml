@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+spec:
+  tls:
+    - hosts:
+        - cafe.example.com
+      secretName: cafe-secret
+  rules:
+    - host: cafe.example.com
+      http:
+        paths:
+          - path: /tea
+            backend:
+              serviceName: tea-svc
+              servicePort: 80
+          - path: /coffee
+            backend:
+              serviceName: coffee-svc
+              servicePort: 80
+ # 每一个 path 都对应一个后端 Service。所以在我们的例子里，我定义了两个 path，它们分别对应 coffee 和 tea 这两个 Deployment 的 Service（即：coffee-svc 和 tea-svc）
